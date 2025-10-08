@@ -1,22 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
 import os
 
-
-
 # Load model
 model_path = os.path.join(os.path.dirname(__file__), "heart_model.pkl")
-model = joblib.load(model_path)
-
-
 try:
     model = joblib.load(model_path)
 except FileNotFoundError:
     model = None
     print("⚠️ Model file not found! Ensure heart_model.pkl is in the same directory.")
-
-
 
 # Input schema
 class Patient(BaseModel):
@@ -42,6 +35,9 @@ def root():
 
 @app.post("/predict")
 def predict(patient: Patient):
+    if model is None:
+        raise HTTPException(status_code=500, detail="Model not loaded!")
+
     features = [[
         patient.age, patient.sex, patient.cp, patient.trestbps, patient.chol,
         patient.fbs, patient.restecg, patient.thalach, patient.exang,
