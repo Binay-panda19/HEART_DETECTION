@@ -50,7 +50,7 @@ export default function App() {
 
       // POST request to backend Node.js server
       const response = await axios.post(
-        "https://heart-detection-zxhm.onrender.com/api/scan",
+        `${process.env.REACT_APP_NODE_URL}/api/scan`,
         numericData
       );
 
