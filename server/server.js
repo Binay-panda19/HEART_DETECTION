@@ -23,7 +23,7 @@ app.post("/api/scan", async (req, res) => {
 
     // Forward to Python FastAPI backend
     const response = await axios.post(
-      "http://127.0.0.1:8000/predict",
+      "https://heart-detection-python-ml.onrender.com",
       req.body
     );
 
