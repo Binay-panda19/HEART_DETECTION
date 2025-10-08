@@ -1,9 +1,22 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
+import os
+
+
 
 # Load model
-model = joblib.load(r"C:\Users\LENOVO\OneDrive\Desktop\CLASSROOM\PROJECTS\HEART_DETECTION\python-api\heart_model.pkl")
+model_path = os.path.join(os.path.dirname(__file__), "heart_model.pkl")
+model = joblib.load(model_path)
+
+
+try:
+    model = joblib.load(model_path)
+except FileNotFoundError:
+    model = None
+    print("⚠️ Model file not found! Ensure heart_model.pkl is in the same directory.")
+
+
 
 # Input schema
 class Patient(BaseModel):
