@@ -13,20 +13,23 @@ export const ResultsSection = ({
   if (isLoading || riskPercentage === null) return null;
 
   // Risk level logic
-  let bgColor = "from-green-400 to-emerald-600";
+  let bgColor = "from-red-50 to-white";
   let textColor = "text-green-900";
-  let icon = <CheckCircle className="w-10 h-10 text-green-800" />;
+  let borderColor = "border-green-400";
+  let icon = <CheckCircle className="w-10 h-10 text-green-700" />;
   let message = "Your heart seems healthy! Keep up your lifestyle ❤️";
 
   if (riskPercentage >= 70) {
-    bgColor = "from-red-500 to-red-700";
-    textColor = "text-red-100";
-    icon = <AlertTriangle className="w-10 h-10 text-red-100" />;
+    bgColor = "from-red-100 to-red-50";
+    textColor = "text-red-700";
+    borderColor = "border-red-500";
+    icon = <AlertTriangle className="w-10 h-10 text-red-700" />;
     message = "High risk detected! Please consult a doctor immediately ⚠️";
   } else if (riskPercentage >= 40) {
-    bgColor = "from-yellow-400 to-orange-500";
-    textColor = "text-yellow-900";
-    icon = <HeartPulse className="w-10 h-10 text-yellow-900" />;
+    bgColor = "from-yellow-50 to-orange-50";
+    textColor = "text-yellow-800";
+    borderColor = "border-yellow-400";
+    icon = <HeartPulse className="w-10 h-10 text-yellow-700" />;
     message = "Moderate risk — a lifestyle check is recommended 💡";
   }
 
@@ -36,7 +39,7 @@ export const ResultsSection = ({
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className={`relative bg-gradient-to-br ${bgColor} rounded-3xl shadow-2xl text-center text-black max-w-md w-full p-10`}
+        className={`relative bg-gradient-to-br ${bgColor} border ${borderColor} rounded-3xl shadow-lg text-center max-w-md w-full p-10`}
       >
         <motion.div
           initial={{ scale: 0 }}
@@ -45,7 +48,7 @@ export const ResultsSection = ({
           className="flex flex-col items-center"
         >
           {icon}
-          <h3 className="text-2xl font-bold mt-4 mb-2">
+          <h3 className="text-2xl font-bold mt-4 mb-2 text-black">
             Predicted Heart Disease Risk
           </h3>
 
@@ -56,7 +59,7 @@ export const ResultsSection = ({
                 cx="96"
                 cy="96"
                 r="80"
-                stroke="rgba(255,255,255,0.3)"
+                stroke="rgba(0,0,0,0.1)"
                 strokeWidth="16"
                 fill="none"
               />
@@ -64,7 +67,7 @@ export const ResultsSection = ({
                 cx="96"
                 cy="96"
                 r="80"
-                stroke="white"
+                stroke="#ef4444"
                 strokeWidth="16"
                 strokeLinecap="round"
                 fill="none"
@@ -74,24 +77,24 @@ export const ResultsSection = ({
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <p className="text-5xl font-extrabold drop-shadow-lg">
+              <p className="text-5xl font-extrabold text-black drop-shadow-sm">
                 {riskPercentage}%
               </p>
-              <p className="text-sm font-semibold mt-1 uppercase tracking-wide">
+              <p className="text-sm font-semibold mt-1 uppercase tracking-wide text-red-700">
                 Risk Level
               </p>
             </div>
           </div>
 
           <p
-            className={`text-lg font-medium mt-4 ${textColor} bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl`}
+            className={`text-lg font-medium mt-4 ${textColor} bg-red-100/50 backdrop-blur-sm px-4 py-2 rounded-xl`}
           >
             {message}
           </p>
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="mt-8 bg-white text-red-600 font-bold px-6 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition transform duration-300"
+            className="mt-8 bg-red-600 text-white font-bold px-6 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300"
           >
             Check Again
           </button>
