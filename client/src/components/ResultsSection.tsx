@@ -36,7 +36,7 @@ export const ResultsSection = ({
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className={`relative bg-gradient-to-br ${bgColor} rounded-3xl shadow-2xl text-center text-white max-w-md w-full p-10`}
+        className={`relative bg-gradient-to-br ${bgColor} rounded-3xl shadow-2xl text-center text-black max-w-md w-full p-10`}
       >
         <motion.div
           initial={{ scale: 0 }}
