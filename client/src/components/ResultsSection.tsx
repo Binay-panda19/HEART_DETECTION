@@ -97,7 +97,7 @@ export const ResultsSection = ({
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="mt-8 bg-red-600 text-white font-bold px-6 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300"
+            className="mt-8 bg-red-600 text-red font-bold px-6 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300"
           >
             Check Again
           </button>
