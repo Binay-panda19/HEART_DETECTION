@@ -69,7 +69,7 @@ frontend/out/
 # ======================
 # Python model files
 # ======================
-*.pkl
+
 *.h5
 *.joblib
 
