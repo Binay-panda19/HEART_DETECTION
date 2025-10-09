@@ -87,6 +87,8 @@ export const ResultsSection = ({
             </div>
           </div>
 
+          <br></br>
+          <br></br>
           <p
             className={`text-lg font-medium mt-4 ${textColor} bg-red-100/50 backdrop-blur-sm px-4 py-2 rounded-xl`}
           >
