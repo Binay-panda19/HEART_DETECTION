@@ -37,6 +37,9 @@ export default function App() {
     });
   };
 
+  const vite_url: string =
+    import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
   // Submit form to backend
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -49,10 +52,7 @@ export default function App() {
       );
 
       // POST request to backend Node.js server
-      const response = await axios.post(
-        "https://heart-detection-server.onrender.com/api/scan",
-        numericData
-      );
+      const response = await axios.post(`${vite_url}/api/scan`, numericData);
 
       // Set risk percentage from response
       setRiskPercentage(response.data.risk_percentage);
