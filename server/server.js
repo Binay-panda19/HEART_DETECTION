@@ -2,6 +2,7 @@ import express from "express";
 import axios from "axios";
 import cors from "cors";
 import dotenv from "dotenv";
+import { log } from "console";
 
 dotenv.config();
 
@@ -20,7 +21,10 @@ app.get("/", (req, res) => {
 app.post("/api/scan", async (req, res) => {
   try {
     console.log("Received data from frontend:", req.body);
+    // console.log(PYTHON_API_URL);
+    // console.log("➡️ Sending POST request to:", `${PYTHON_API_URL}/predict`);
     const response = await axios.post(`${PYTHON_API_URL}/predict`, req.body);
+
     console.log("Received response from Python API:", response.data);
     res.json(response.data);
   } catch (error) {
@@ -32,11 +36,17 @@ app.post("/api/scan", async (req, res) => {
   }
 });
 
-app.use((req, res) => {
+app.get("/api/scan", (req, res) => {
+  res.status(405).json({ error: "Use POST method for predictions" });
+});
+
+// Handle unknown routes gracefully
+app.use((req, res, next) => {
+  if (req.url === "/favicon.ico") return res.status(204).end();
   console.log("Unknown request:", req.method, req.url);
-  res.status(404).send("Not Found");
+  res.status(404).json({ error: "Route not found" });
 });
 
 app.listen(PORT, () => {
-  console.log(`Node.js backend running on http://localhost:${PORT}`);
+  console.log(`running on http://localhost:${PORT}`);
 });

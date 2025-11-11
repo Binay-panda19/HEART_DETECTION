@@ -50,7 +50,7 @@ export default function App() {
 
       // POST request to backend Node.js server
       const response = await axios.post(
-        "https://heart-detection-zxhm.onrender.com/api/scan",
+        "http://localhost:5000/api/scan",
         numericData
       );
 
@@ -74,13 +74,14 @@ export default function App() {
     <div className="min-h-screen bg-white font-['Inter',sans-serif]">
       <Header />
       <Hero onActionClick={scrollToInput} />
-      <InputSection
-        id="input-section"
-        patientData={patientData}
-        onInputChange={handleInputChange}
-        onSubmit={handleSubmit}
-        isLoading={isLoading}
-      />
+      <div id="input-section">
+        <InputSection
+          patientData={patientData}
+          onInputChange={handleInputChange}
+          onSubmit={handleSubmit}
+          isLoading={isLoading}
+        />
+      </div>
       <ResultsSection riskPercentage={riskPercentage} isLoading={isLoading} />
       <Footer />
     </div>
