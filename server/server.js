@@ -48,5 +48,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`running on http://localhost:${PORT}`);
+  console.log(`running on ${PORT}`);
 });
