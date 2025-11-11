@@ -38,7 +38,8 @@ export default function App() {
   };
 
   const vite_url: string =
-    import.meta.env.VITE_API_BASE || "http://localhost:5000";
+    import.meta.env.VITE_API_BASE ||
+    "https://heart-detection-server.onrender.com";
 
   // Submit form to backend
   const handleSubmit = async () => {
